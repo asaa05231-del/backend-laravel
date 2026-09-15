@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SistemPengirimanApp.Models"
+             x:Class="SistemPengirimanApp.Views.MasterDataTarifTahunanPage"
+             Title="Tarif Upah Tahunan">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="TarifTahunanTemplate" x:DataType="models:TarifUpahTahunan">
+            <Border Style="{StaticResource KartuBorderList}" Margin="0,0,0,8">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{Binding Tahun}" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource BiruUtama}" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Upah Harian sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry Text="{Binding UpahHariansupir, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Upah Harian Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry Text="{Binding UpahHarianKernet, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Upah Mingguan sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry Text="{Binding UpahMingguansupir, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Upah Mingguan Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry Text="{Binding UpahMingguanKernet, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Tunjangan Makan Harian" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry Text="{Binding TunjanganMakanHarian, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Subsidi Transport Harian" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry Text="{Binding SubsidiTransportHarian, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Jamsostek (%)" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry Text="{Binding JamsostekPersen, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <Button Text="Simpan Perubahan" Style="{StaticResource TombolSekunder}"
+                    Clicked="OnSimpanTarifTahunanClicked" CommandParameter="{Binding .}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="Tambah Tarif Tahun Baru" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="12">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Tahun" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryTahunBaru" Placeholder="2027" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Upah Harian sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryUpahHariansupirBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Upah Harian Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryUpahHarianKernetBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Upah Mingguan sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryUpahMingguansupirBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Upah Mingguan Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryUpahMingguanKernetBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Tunjangan Makan Harian" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryTunjanganMakanBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Subsidi Transport Harian" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntrySubsidiTransportBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Jamsostek (%)" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryJamsostekBaru" Placeholder="0" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <Button Text="Tambah/Perbarui Tahun" Style="{StaticResource TombolUtama}" Clicked="OnTambahTarifTahunanClicked" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="Pengaturan Jamsostek &amp; Kesehatan" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Jamsostek sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryJamsostekSupir" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Jamsostek Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryJamsostekKernet" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Kesehatan sopir (tidak ikut Jamsostek)" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryKesehatanSupir" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Kesehatan Kernet (tidak ikut Jamsostek)" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryKesehatanKernet" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Button Text="Simpan Pengaturan Jamsostek &amp; Kesehatan" Style="{StaticResource TombolUtama}" Clicked="OnSimpanPengaturanJamsostekClicked" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="Daftar Tarif per Tahun" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+
+            <VerticalStackLayout x:Name="ListTarifTahunan" Spacing="8" BindableLayout.ItemTemplate="{StaticResource TarifTahunanTemplate}">
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.InputPengirimanPage"
+             Title="Input Pengiriman">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <Label Text="Tambah Pengiriman" Style="{StaticResource JudulHalaman}" />
+            <Label Text="Isi data di bawah, tarif &amp; total akan terhitung otomatis" Style="{StaticResource SubJudul}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="14">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Tanggal" FontAttributes="Bold" Style="{StaticResource LabelKartu}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <DatePicker x:Name="PickerTanggal" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Wilayah Tujuan" FontAttributes="Bold" Style="{StaticResource LabelKartu}" />
+                        <Border x:Name="BorderWilayah" Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="46">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="GestureWilayah" Tapped="OnPilihWilayahTapped" />
+                            </Border.GestureRecognizers>
+                            <Label x:Name="LabelWilayahTerpilih" Text="Pilih wilayah tujuan"
+               TextColor="{StaticResource AbuTeks}" VerticalOptions="Center" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nama sopir" FontAttributes="Bold" Style="{StaticResource LabelKartu}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="46">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnPilihsopirTapped" />
+                            </Border.GestureRecognizers>
+                            <Label x:Name="LabelsopirTerpilih" Text="Pilih sopir"
+                                   TextColor="{StaticResource AbuTeks}" VerticalOptions="Center" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nama Kernet" FontAttributes="Bold" Style="{StaticResource LabelKartu}" />
+                        <Border x:Name="BorderKernet" Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0" HeightRequest="46">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="GestureKernet" Tapped="OnPilihKernetTapped" />
+                            </Border.GestureRecognizers>
+                            <Label x:Name="LabelKernetTerpilih" Text="Pilih kernet"
+               TextColor="{StaticResource AbuTeks}" VerticalOptions="Center" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <HorizontalStackLayout Spacing="8">
+                        <CheckBox x:Name="CheckboxMuatanBerat" CheckedChanged="OnCheckboxMuatanBeratChanged" />
+                        <Label Text="Muatan Berat" VerticalOptions="Center" Style="{StaticResource LabelKartu}" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="8">
+                        <CheckBox x:Name="CheckboxKir" CheckedChanged="OnCheckboxKirChanged" />
+                        <Label Text="KIR" VerticalOptions="Center" Style="{StaticResource LabelKartu}" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="8">
+                        <CheckBox x:Name="CheckboxBengkel" CheckedChanged="OnCheckboxBengkelChanged" />
+                        <Label Text="Bengkel" VerticalOptions="Center" Style="{StaticResource LabelKartu}" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource KartuBorder}" BackgroundColor="{StaticResource BiruUtama}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Rincian Biaya Otomatis" FontAttributes="Bold" TextColor="White" FontSize="16" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Tarif sopir" TextColor="#D4DAEB" />
+                        <Label Grid.Column="1" x:Name="LabelTarifsopir" Text="Rp 0" TextColor="White" FontAttributes="Bold" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Tarif Kernet" TextColor="#D4DAEB" />
+                        <Label Grid.Column="1" x:Name="LabelTarifKernet" Text="Rp 0" TextColor="White" FontAttributes="Bold" />
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="#3D4E75" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Total Biaya" TextColor="White" FontAttributes="Bold" FontSize="16" />
+                        <Label Grid.Column="1" x:Name="LabelTotalBiaya" Text="Rp 0" TextColor="{StaticResource AksenOranye}" FontAttributes="Bold" FontSize="18" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="LabelError" TextColor="{StaticResource MerahHapus}" FontSize="13" IsVisible="False" />
+
+            <Button Text="Simpan Pengiriman" Style="{StaticResource TombolUtama}" Clicked="OnSimpanClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

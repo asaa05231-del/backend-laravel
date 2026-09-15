@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.MasterDataPage"
+             Title="Master Data">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="Master Data" Style="{StaticResource JudulHalaman}" />
+            <Label Text="Pilih data yang ingin dikelola" Style="{StaticResource SubJudul}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKartuPegawaiTapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label Grid.Column="0" Text="👥" FontSize="28" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="14,0,0,0" VerticalOptions="Center">
+                        <Label Text="Pegawai" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource HitamTeks}" />
+                        <Label Text="Kelola data sopir &amp; kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Border Style="{StaticResource KartuBorder}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKartuWilayahTapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label Grid.Column="0" Text="🗺️" FontSize="28" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="14,0,0,0" VerticalOptions="Center">
+                        <Label Text="Wilayah &amp; Tarif" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource HitamTeks}" />
+                        <Label Text="Kelola wilayah tujuan dan tarif pengiriman" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Border Style="{StaticResource KartuBorder}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnKartuTarifTahunanTapped" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label Grid.Column="0" Text="📅" FontSize="28" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="14,0,0,0" VerticalOptions="Center">
+                        <Label Text="Tarif Upah Tahunan" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource HitamTeks}" />
+                        <Label Text="Atur upah harian &amp; mingguan per tahun" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

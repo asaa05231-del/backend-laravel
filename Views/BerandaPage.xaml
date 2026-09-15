@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SistemPengirimanApp.Views"
+             x:Class="SistemPengirimanApp.Views.BerandaPage"
+             Title="Beranda">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Header Admin: banner navy, konsisten gaya dengan header User -->
+            <Border x:Name="HeaderAdmin" BackgroundColor="{StaticResource BiruUtama}" StrokeShape="RoundRectangle 16" Padding="20" IsVisible="False">
+                <VerticalStackLayout Spacing="4">
+                    <Label x:Name="LabelSapaanWaktuAdmin" TextColor="#9BA9C4" FontSize="13" FontAttributes="Bold" />
+                    <Label x:Name="LabelNamaUserAdmin" TextColor="White" FontSize="22" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Header User: banner biru + progress hari kerja -->
+            <Border x:Name="HeaderUser" BackgroundColor="{StaticResource BiruUtama}" StrokeShape="RoundRectangle 16" Padding="20" IsVisible="False">
+                <VerticalStackLayout Spacing="4">
+                    <Label x:Name="LabelSapaanWaktu" TextColor="#9BA9C4" FontSize="13" FontAttributes="Bold" />
+                    <Label x:Name="LabelNamaUser" TextColor="White" FontSize="22" FontAttributes="Bold" Margin="0,0,0,14" />
+
+                    <Border BackgroundColor="{StaticResource AksenOranye}" StrokeShape="RoundRectangle 12" Padding="14,12">
+                        <VerticalStackLayout Spacing="8">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Grid.Column="0" Text="Hari kerja minggu ini" FontSize="12" FontAttributes="Bold" TextColor="#FFE3D0" />
+                                <Label Grid.Column="1" x:Name="LabelHariKerjaText" FontSize="12" FontAttributes="Bold" TextColor="White" />
+                            </Grid>
+                            <Border BackgroundColor="#4DFFFFFF" StrokeShape="RoundRectangle 6" HeightRequest="8" Padding="0">
+                                <Grid x:Name="GridBarHariKerja" ColumnDefinitions="0*,5*" ColumnSpacing="0">
+                                    <BoxView Grid.Column="0" BackgroundColor="White" />
+                                    <BoxView Grid.Column="1" BackgroundColor="Transparent" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Ringkasan Statistik: khusus Admin -->
+            <Grid x:Name="GridStatistik" ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto" RowSpacing="12">
+                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource KartuBorder}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnKartuHariIniTapped" />
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="📦" FontSize="24" />
+                        <Label x:Name="LabelTotalHariIni" Text="0" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource BiruUtama}" />
+                        <Label Text="Pengiriman Hari Ini" Style="{StaticResource SubJudul}" />
+                        <Label Text="Ketuk untuk lihat rincian" FontSize="10" TextColor="{StaticResource AksenOranye}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource KartuBorder}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnKartuTotalTransaksiTapped" />
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="🗂️" FontSize="24" />
+                        <Label x:Name="LabelTotalTransaksi" Text="0" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource BiruUtama}" />
+                        <Label Text="Total Transaksi" Style="{StaticResource SubJudul}" />
+                        <Label Text="Ketuk untuk lihat rincian" FontSize="10" TextColor="{StaticResource AksenOranye}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource KartuBorder}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnKartuTotalBiayaTapped" />
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="💰" FontSize="24" />
+                        <Label x:Name="LabelTotalBiaya" Text="Rp 0" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource AksenOranye}" />
+                        <Label Text="Total Biaya Pengiriman (Semua)" Style="{StaticResource SubJudul}" />
+                        <Label Text="Ketuk untuk lihat rincian" FontSize="10" TextColor="{StaticResource AksenOranye}" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Menu Cepat -->
+            <Label Text="Menu Cepat"
+       FontAttributes="Bold"
+       FontSize="16"
+       TextColor="{StaticResource HitamTeks}" />
+
+                <Button x:Name="BtnInputPengiriman"
+        Text="Input Pengiriman Baru"
+        BackgroundColor="{StaticResource AksenOranye}"
+        TextColor="White"
+        FontAttributes="Bold"
+        HeightRequest="46"
+        CornerRadius="12"
+        Clicked="OnInputPengirimanClicked"
+        IsVisible="False"/>
+
+            <Button x:Name="BtnRiwayatPengiriman"
+        Text="Lihat Riwayat Pengiriman"
+        BackgroundColor="{StaticResource BiruUtama}"
+        TextColor="White"
+        FontAttributes="Bold"
+        HeightRequest="46"
+        CornerRadius="12"
+        Clicked="OnRiwayatClicked"
+        IsVisible="False"/>
+
+            <!-- Aktivitas Terakhir: khusus User -->
+            <VerticalStackLayout x:Name="SectionAktivitas" Spacing="8" IsVisible="False">
+                <Label Text="Aktivitas Terakhir" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource HitamTeks}" />
+                <Border BackgroundColor="{StaticResource PutihKartu}" StrokeShape="RoundRectangle 12" Padding="0">
+                    <CollectionView x:Name="ListAktivitas">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowDefinitions="Auto,Auto" Padding="14,12,14,0">
+                                    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                        <Border Grid.Column="0" BackgroundColor="#FFE9DA" StrokeShape="RoundRectangle 9" WidthRequest="36" HeightRequest="36" Padding="0">
+                                            <Label Text="{Binding Inisial}" FontAttributes="Bold" FontSize="14" TextColor="{StaticResource AksenOranye}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Border>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                            <Label Text="{Binding Judul}" FontSize="13" TextColor="{StaticResource HitamTeks}" />
+                                            <Label Text="{Binding TanggalText}" FontSize="11" TextColor="{StaticResource AbuTeks}" />
+                                        </VerticalStackLayout>
+                                        <Border Grid.Column="2" BackgroundColor="#FFE9DA" StrokeShape="RoundRectangle 20" Padding="10,4" VerticalOptions="Center">
+                                            <Label Text="{Binding Status}" FontSize="11" FontAttributes="Bold" TextColor="#B34D0E" />
+                                        </Border>
+                                    </Grid>
+                                    <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="#E5E7EB" Margin="0,12,0,0" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Label Text="Belum ada aktivitas" FontSize="13" TextColor="{StaticResource AbuTeks}" Padding="14" />
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </Border>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

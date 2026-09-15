@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SistemPengirimanApp.Models"
+             x:Class="SistemPengirimanApp.Views.DetailPengirimanPage"
+             Title="Detail Pengiriman">
+
+    <Grid RowDefinitions="Auto,*" Padding="20" RowSpacing="12">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label x:Name="LabelJudul" Style="{StaticResource JudulHalaman}" />
+            <Label x:Name="LabelSubJudul" Style="{StaticResource SubJudul}" />
+        </VerticalStackLayout>
+
+        <RefreshView Grid.Row="1" x:Name="RefreshViewDetail" Refreshing="OnRefresh">
+            <CollectionView x:Name="ListDetail">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="8" Margin="0,60,0,0">
+                        <Label Text="Tidak ada data" TextColor="{StaticResource AbuTeks}" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Pengiriman">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Hapus"
+                           BackgroundColor="{StaticResource MerahHapus}"
+                           Invoked="OnHapusSwiped" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Border Style="{StaticResource KartuBorder}" Margin="0,0,0,10" Padding="16,12">
+                                <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0" Text="{Binding JudulTampilan}" FontAttributes="Bold" TextColor="{StaticResource BiruUtama}" FontSize="15" />
+                                        <Label Grid.Column="1" Text="{Binding Tanggal, StringFormat='{0:dd MMM yyyy}'}" TextColor="{StaticResource AbuTeks}" FontSize="12" />
+                                    </Grid>
+                                    <Label Grid.Row="1" FontSize="13" TextColor="{StaticResource HitamTeks}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="sopir: " TextColor="{StaticResource AbuTeks}" />
+                                                <Span Text="{Binding NamaSupirTampilan}" />
+                                                <Span Text="   •   Kernet: " TextColor="{StaticResource AbuTeks}" />
+                                                <Span Text="{Binding NamaKernetTampilan}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="2" Text="{Binding TotalBiaya, StringFormat='Total: Rp {0:N0}'}"
+           FontAttributes="Bold" TextColor="{StaticResource AksenOranye}" />
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+</ContentPage>

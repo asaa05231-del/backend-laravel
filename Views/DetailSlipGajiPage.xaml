@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SistemPengirimanApp.Models"
+             x:Class="SistemPengirimanApp.Views.DetailSlipGajiPage"
+             Title="Detail Slip Gaji">
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20" RowSpacing="14">
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Detail Slip Gaji" Style="{StaticResource JudulHalaman}" />
+            <Label x:Name="LabelPeriode" Style="{StaticResource SubJudul}" />
+        </VerticalStackLayout>
+        <!-- Saklar Tab: sopir / Kernet -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button x:Name="TombolTabsopir" Grid.Column="0" Text="sopir"
+                    Style="{StaticResource TombolUtama}" Clicked="OnTabsopirClicked" />
+            <Button x:Name="TombolTabKernet" Grid.Column="1" Text="Kernet"
+                    Style="{StaticResource TombolSekunder}" Clicked="OnTabKernetClicked" />
+        </Grid>
+        <RefreshView Grid.Row="2" x:Name="RefreshViewSlip" Refreshing="OnRefresh">
+            <Grid>
+                <CollectionView x:Name="Listsopir" SelectionMode="Single" SelectionChanged="OnSlipDipilih" IsVisible="True">
+                    <CollectionView.EmptyView>
+                        <Label Text="Tidak ada data sopir" FontSize="13" TextColor="{StaticResource AbuTeks}" Margin="4" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:SlipGaji">
+                            <Border Style="{StaticResource KartuBorder}" Margin="0,0,0,8" Padding="16,12">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Grid.Column="0" Text="{Binding Pegawai.Nama}" FontAttributes="Bold" FontSize="15"
+                                           TextColor="{StaticResource HitamTeks}" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding Dibayar, Converter={StaticResource FormatRibuan}, StringFormat='Rp {0}'}" FontAttributes="Bold"
+                                           TextColor="{StaticResource AksenOranye}" FontSize="15" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <CollectionView x:Name="ListKernet" SelectionMode="Single" SelectionChanged="OnSlipDipilih" IsVisible="False">
+                    <CollectionView.EmptyView>
+                        <Label Text="Tidak ada data kernet" FontSize="13" TextColor="{StaticResource AbuTeks}" Margin="4" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:SlipGaji">
+                            <Border Style="{StaticResource KartuBorder}" Margin="0,0,0,8" Padding="16,12">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Grid.Column="0" Text="{Binding Pegawai.Nama}" FontAttributes="Bold" FontSize="15"
+                                           TextColor="{StaticResource HitamTeks}" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding Dibayar, Converter={StaticResource FormatRibuan}, StringFormat='Rp {0}'}" FontAttributes="Bold"
+                                           TextColor="{StaticResource AksenOranye}" FontSize="15" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </RefreshView>
+    </Grid>
+</ContentPage>

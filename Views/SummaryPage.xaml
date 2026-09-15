@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.SummaryPage"
+             Title="Summary">
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="16" RowSpacing="10">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Summary Gaji" Style="{StaticResource JudulHalaman}" />
+            <Label x:Name="LabelInfo" Style="{StaticResource SubJudul}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" Style="{StaticResource KartuBorder}" Padding="12,10">
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                <Button Grid.Column="0" Text="&lt;" WidthRequest="44" Style="{StaticResource TombolSekunder}" Clicked="OnPeriodeSebelumnyaClicked" />
+                <Label Grid.Column="1" x:Name="LabelPeriode" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Button Grid.Column="2" Text="&gt;" WidthRequest="44" Style="{StaticResource TombolSekunder}" Clicked="OnPeriodeBerikutnyaClicked" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="10">
+            <Button Grid.Column="0" x:Name="ButtonGenerate" Text="Generate / Perbarui" Style="{StaticResource TombolSekunder}" Clicked="OnGenerateClicked" />
+            <Button Grid.Column="1" x:Name="ButtonSimpanSemua" Text="Simpan Semua Perubahan" Style="{StaticResource TombolUtama}" Clicked="OnSimpanSemuaClicked" />
+        </Grid>
+        
+        <ScrollView Grid.Row="3" Orientation="Vertical">
+            <Grid ColumnDefinitions="Auto,*">
+                <Grid x:Name="GridBeku" Grid.Column="0" RowSpacing="0" ColumnSpacing="0" />
+                <ScrollView Grid.Column="1" Orientation="Horizontal">
+                    <Grid x:Name="GridTabel" RowSpacing="0" ColumnSpacing="0" />
+                </ScrollView>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

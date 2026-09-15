@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SistemPengirimanApp.Views"
+             x:Class="SistemPengirimanApp.Views.RiwayatPage"
+             Title="Riwayat Pengiriman">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="TemplateNama" x:DataType="local:RiwayatItemNama">
+            <Border BackgroundColor="{StaticResource BiruUtama}" StrokeShape="RoundRectangle 8,8,0,0" Padding="14,12" Margin="0,14,0,0">
+                <Label Text="{Binding Nama}" FontAttributes="Bold" FontSize="16" TextColor="White" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateKolomHeader" x:DataType="local:RiwayatItemKolomHeader">
+            <Grid ColumnDefinitions="36,100,*,70,60,76,76" ColumnSpacing="14" BackgroundColor="#E3E8F2" Padding="10,8">
+                <Label Grid.Column="0" Text="No" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="1" Text="Tanggal" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="2" Text="Tujuan" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="3" Text="Bengkel" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="4" Text="KIR" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="5" Text="sopir" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                <Label Grid.Column="6" Text="Kernet" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+
+<DataTemplate x:Key="TemplateBaris" x:DataType="local:RiwayatBaris">
+    <Border BackgroundColor="White" Stroke="#EDEFF3" Padding="0">
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnBarisTapped" />
+        </Border.GestureRecognizers>
+        <VerticalStackLayout Spacing="0" BindableLayout.ItemsSource="{Binding Trips}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="local:RiwayatTripHarian">
+                            <Grid ColumnDefinitions="36,100,*,70,60,76,76" ColumnSpacing="14" Padding="10,6" HeightRequest="32">
+                                <BoxView Grid.Column="2" Grid.ColumnSpan="5" HeightRequest="1" BackgroundColor="#F0F1F4"
+                                         VerticalOptions="Start" Margin="0,-3,0,0" IsVisible="{Binding BukanTripPertama}" />
+                                <Label Grid.Column="0" Text="{Binding NomorText}" FontSize="15" TextColor="{StaticResource HitamTeks}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="{Binding TanggalDisplayText}" FontSize="15" TextColor="{StaticResource HitamTeks}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                                <Label Grid.Column="2" Text="{Binding Wilayah}" FontSize="15" TextColor="{StaticResource HitamTeks}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                                <Label Grid.Column="3" Text="{Binding BengkelText}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource AksenOranye}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                                <Label Grid.Column="4" Text="{Binding KirText}" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource AksenOranye}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                                <Label Grid.Column="5" Text="{Binding NominalSupirText}" FontSize="15" TextColor="{StaticResource HitamTeks}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                                <Label Grid.Column="6" Text="{Binding NominalKernetText}" FontSize="15" TextColor="{StaticResource HitamTeks}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" />
+                            </Grid>
+                        </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+    </Border>
+</DataTemplate>
+        <DataTemplate x:Key="TemplateTotal" x:DataType="local:RiwayatItemTotal">
+            <VerticalStackLayout Spacing="0">
+                <Grid ColumnDefinitions="36,100,*,70,60,76,76" ColumnSpacing="14" BackgroundColor="#E3E8F2" Padding="10,8">
+                    <Label Grid.Column="0" Grid.ColumnSpan="5" Text="Total" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" VerticalOptions="Center" />
+                    <Label Grid.Column="5" Text="{Binding TotalSupirText, StringFormat='Rp  {0}'}" FontAttributes="Bold" FontSize="13" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                    <Label Grid.Column="6" Text="{Binding TotalKernetText, StringFormat='Rp  {0}'}" FontAttributes="Bold" FontSize="13" TextColor="{StaticResource BiruUtama}" HorizontalTextAlignment="Center" />
+                </Grid>
+                <Grid ColumnDefinitions="*,Auto" BackgroundColor="{StaticResource AksenOranye}" Padding="10,8">
+                    <Label Grid.Column="0" Text="G. Total" FontAttributes="Bold" FontSize="15" TextColor="White" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="{Binding GrandTotalText, StringFormat='Rp  {0}'}" FontAttributes="Bold" FontSize="15" TextColor="White" VerticalOptions="Center" />
+                </Grid>
+            </VerticalStackLayout>
+        </DataTemplate>
+        <local:RiwayatTemplateSelector x:Key="SelectorRiwayat"
+            TemplateNama="{StaticResource TemplateNama}"
+            TemplateKolomHeader="{StaticResource TemplateKolomHeader}"
+            TemplateBaris="{StaticResource TemplateBaris}"
+            TemplateTotal="{StaticResource TemplateTotal}" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="20" RowSpacing="10">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Riwayat Pengiriman" Style="{StaticResource JudulHalaman}" FontSize="20" />
+            <Label x:Name="LabelJumlah" Style="{StaticResource SubJudul}" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" Style="{StaticResource KartuBorder}" Padding="12,10">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+                <Button Grid.Column="0" Text="&lt;" WidthRequest="44" Style="{StaticResource TombolSekunder}" Clicked="OnPeriodeSebelumnyaClicked" />
+                <Label Grid.Column="1" x:Name="LabelPeriode" FontAttributes="Bold" FontSize="15" TextColor="{StaticResource BiruUtama}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Border Grid.Column="2" Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="10,0">
+                    <DatePicker x:Name="PickerCariPeriode" DateSelected="OnPilihTanggal" />
+                </Border>
+                <Button Grid.Column="3" Text="&gt;" WidthRequest="44" Style="{StaticResource TombolSekunder}" Clicked="OnPeriodeBerikutnyaClicked" />
+            </Grid>
+        </Border>
+
+        <!-- Header "sopir / KERNET": hanya tampil untuk admin -->
+        <Grid Grid.Row="2" x:Name="GridHeaderKategori" ColumnDefinitions="*,*" ColumnSpacing="16">
+            <Label Grid.Column="0" x:Name="LabelHeadersopir" Text="sopir" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource BiruUtama}" />
+            <Label Grid.Column="1" x:Name="LabelHeaderKernet" Text="KERNET" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource BiruUtama}" />
+        </Grid>
+
+        <!-- Satu RefreshView + satu ScrollView untuk semua konten, supaya kolom admin scroll bareng -->
+        <RefreshView Grid.Row="3" x:Name="RefreshViewRiwayat" Refreshing="OnRefresh">
+            <ScrollView>
+                <Grid>
+
+                    <!-- Tampilan ADMIN: 2 kolom sopir & kernet, sejajar dan scroll bareng -->
+                    <Grid x:Name="GridKolomAdmin" ColumnDefinitions="*,*" ColumnSpacing="16">
+                        <VerticalStackLayout Grid.Column="0" x:Name="StackSopir" Spacing="0"
+                            BindableLayout.ItemTemplateSelector="{StaticResource SelectorRiwayat}" />
+                        <VerticalStackLayout Grid.Column="1" x:Name="StackKernet" Spacing="0"
+                            BindableLayout.ItemTemplateSelector="{StaticResource SelectorRiwayat}" />
+                    </Grid>
+
+                    <!-- Tampilan USER: satu kolom individual -->
+                    <VerticalStackLayout x:Name="StackIndividual" Spacing="0"
+                        BindableLayout.ItemTemplateSelector="{StaticResource SelectorRiwayat}" />
+
+                    <Label x:Name="LabelKosong" Text="Tidak ada data" FontSize="14" TextColor="{StaticResource AbuTeks}" Margin="4" IsVisible="False" />
+
+                    <BoxView HeightRequest="24" Color="Transparent" VerticalOptions="End" />
+                </Grid>
+            </ScrollView>
+        </RefreshView>
+
+    </Grid>
+</ContentPage>

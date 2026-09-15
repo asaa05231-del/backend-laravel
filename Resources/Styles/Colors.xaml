@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Palet utama: biru navy gelap + aksen oranye, kesan tegas & profesional untuk aplikasi logistik -->
+    <Color x:Key="BiruUtama">#1B2A4A</Color>
+    <Color x:Key="BiruMuda">#2E4270</Color>
+    <Color x:Key="AksenOranye">#FF7A29</Color>
+    <Color x:Key="PutihKartu">#FFFFFF</Color>
+    <Color x:Key="AbuLatar">#F4F6FA</Color>
+    <Color x:Key="AbuTeks">#6B7280</Color>
+    <Color x:Key="HitamTeks">#1F2937</Color>
+    <Color x:Key="HijauSukses">#22C55E</Color>
+    <Color x:Key="MerahHapus">#EF4444</Color>
+
+</ResourceDictionary>

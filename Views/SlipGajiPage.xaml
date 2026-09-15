@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.SlipGajiPage"
+             Title="Slip Gaji">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" Padding="20" RowSpacing="14">
+        <Label Grid.Row="0" Text="Slip Gaji" Style="{StaticResource JudulHalaman}" />
+
+        <!-- Navigasi Periode -->
+        <Border Grid.Row="1" Style="{StaticResource KartuBorder}" Padding="12,10">
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                <Button Grid.Column="0" Text="&lt;" WidthRequest="44" Style="{StaticResource TombolSekunder}" Clicked="OnPeriodeSebelumnyaClicked" />
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                    <Label x:Name="LabelPeriode" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" HorizontalOptions="Center" />
+                    <Label Text="Kamis - Rabu (5 hari kerja)" FontSize="11" TextColor="{StaticResource AbuTeks}" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                <Button Grid.Column="2" Text="&gt;" WidthRequest="44" Style="{StaticResource TombolSekunder}" Clicked="OnPeriodeBerikutnyaClicked" />
+            </Grid>
+        </Border>
+
+        <!-- Total Gaji (tanpa detail, cuma rupiah) -->
+        <Border x:Name="CardTotalGaji" Grid.Row="2" Style="{StaticResource KartuBorder}" Padding="14,12" IsVisible="False">
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Grid.Column="0" x:Name="LabelJudulTotalGaji" FontAttributes="Bold" FontSize="14" TextColor="{StaticResource BiruUtama}" VerticalOptions="Center" />
+                <Label Grid.Column="1" x:Name="LabelTotalGaji" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource AksenOranye}" VerticalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <!-- Aksi Periode Ini -->
+        <Border x:Name="PanelGenerate" Grid.Row="3" Style="{StaticResource KartuBorder}">
+            <VerticalStackLayout Spacing="10">
+                <Label x:Name="LabelStatusPeriode" FontSize="13" TextColor="{StaticResource AbuTeks}" />
+                <Button x:Name="ButtonGenerate" Text="Generate Slip Gaji Periode Ini" Style="{StaticResource TombolUtama}" Clicked="OnGenerateClicked" />
+                <Button x:Name="ButtonLihatDetail" Text="Lihat Detail Slip Gaji" Style="{StaticResource TombolSekunder}" Clicked="OnLihatDetailClicked" IsVisible="False" />
+            </VerticalStackLayout>
+        </Border>
+
+        <BoxView Grid.Row="4" Color="Transparent" />
+    </Grid>
+</ContentPage>

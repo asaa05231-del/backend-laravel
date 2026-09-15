@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.RincianSlipGajiPage"
+             Title="Rincian Slip Gaji">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <Label x:Name="LabelNamaPegawai" Style="{StaticResource JudulHalaman}" FontSize="24" />
+            <Label x:Name="LabelJabatanPegawai" Style="{StaticResource SubJudul}" FontSize="15" />
+            <Label x:Name="LabelPeriodeSlip" FontSize="14" TextColor="{StaticResource AbuTeks}" />
+
+            <!-- Pendapatan -->
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="0">
+                    <Label Text="Pendapatan" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource BiruUtama}" Margin="0,0,0,10" />
+
+                    <Grid ColumnDefinitions="*,170,50,110" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+
+                        <!-- Upah -->
+                        <Label Grid.Row="0" Grid.Column="0" Text="Upah" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="0" Grid.Column="1" x:Name="LabelUpahKeterangan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8,14,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="0" Grid.Column="2" x:Name="LabelUpahSamaDengan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="0" Grid.Column="3" x:Name="LabelUpah" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Insentif sopir -->
+                        <Label Grid.Row="1" Grid.Column="0" Text="Insentif sopir" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="1" Grid.Column="1" x:Name="LabelInsentifSupirKeterangan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8,14,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="1" Grid.Column="2" x:Name="LabelInsentifSupirSamaDengan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="1" Grid.Column="3" x:Name="LabelInsentifSupir" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Insentif Kernet -->
+                        <Label Grid.Row="2" Grid.Column="0" Text="Insentif Kernet" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="2" Grid.Column="1" x:Name="LabelInsentifKernetKeterangan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8,14,8"  HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="2" Grid.Column="2" x:Name="LabelInsentifKernetSamaDengan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="2" Grid.Column="3" x:Name="LabelInsentifKernet" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Tunjangan Makan -->
+                        <Label Grid.Row="3" Grid.Column="0" Text="Tunjangan Makan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="3" Grid.Column="1" x:Name="LabelTunjanganMakanKeterangan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8,14,8"  HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="3" Grid.Column="2" x:Name="LabelTunjanganMakanSamaDengan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="3" Grid.Column="3" x:Name="LabelTunjanganMakan" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Subsidi Transport -->
+                        <Label Grid.Row="4" Grid.Column="0" Text="Subsidi Transport" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="4" Grid.Column="1" x:Name="LabelSubsidiTransportKeterangan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8,14,8"  HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="4" Grid.Column="2" x:Name="LabelSubsidiTransportSamaDengan" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" LineBreakMode="NoWrap" />
+                        <Label Grid.Row="4" Grid.Column="3" x:Name="LabelSubsidiTransport" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Insentif KIR -->
+                        <Label Grid.Row="5" Grid.Column="0" Text="Insentif KIR" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="5" Grid.Column="3" x:Name="LabelInsentifKir" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Insentif Muatan Berat -->
+                        <Label Grid.Row="6" Grid.Column="0" Text="Insentif Muatan Berat" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="6" Grid.Column="3" x:Name="LabelInsentifMuatanBerat" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                        <BoxView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" HeightRequest="1" BackgroundColor="#F0F1F4" VerticalOptions="End" />
+
+                        <!-- Premi -->
+                        <Label Grid.Row="7" Grid.Column="0" Text="Premi" FontSize="16" TextColor="{StaticResource AbuTeks}" Margin="0,8" />
+                        <Label Grid.Row="7" Grid.Column="3" x:Name="LabelPremi" FontSize="16" TextColor="{StaticResource HitamTeks}" Margin="0,8" HorizontalTextAlignment="End" LineBreakMode="NoWrap" />
+                    </Grid>
+
+                    <BoxView HeightRequest="1.5" BackgroundColor="#D1D5DB" Margin="0,8,0,0" />
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10,0,0">
+                        <Label Grid.Column="0" Text="Total Upah" FontAttributes="Bold" FontSize="17" />
+                        <Label Grid.Column="1" x:Name="LabelTotalUpah" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource BiruUtama}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Potongan -->
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="0">
+                    <Label Text="Potongan" FontAttributes="Bold" FontSize="18" TextColor="{StaticResource BiruUtama}" Margin="0,0,0,10" />
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10">
+                        <Label Grid.Column="0" Text="Jamsostek" FontSize="16" TextColor="{StaticResource AbuTeks}" />
+                        <Label Grid.Column="1" x:Name="LabelJamsostek" FontSize="16" TextColor="{StaticResource HitamTeks}" />
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="#F0F1F4" />
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10">
+                        <Label Grid.Column="0" Text="Cat" FontSize="16" TextColor="{StaticResource AbuTeks}" VerticalOptions="Center" />
+                        <Entry Grid.Column="1" x:Name="EntryPotonganCat" Keyboard="Numeric" FontSize="16"
+                   HorizontalTextAlignment="End" TextColor="{StaticResource HitamTeks}"
+                   BackgroundColor="Transparent" WidthRequest="130" />
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="#F0F1F4" />
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10">
+                        <Label Grid.Column="0" Text="Pengobatan" FontSize="16" TextColor="{StaticResource AbuTeks}" VerticalOptions="Center" />
+                        <Entry Grid.Column="1" x:Name="EntryPotonganPengobatan" Keyboard="Numeric" FontSize="16"
+                   HorizontalTextAlignment="End" TextColor="{StaticResource HitamTeks}"
+                   BackgroundColor="Transparent" WidthRequest="130" />
+                    </Grid>
+                    <BoxView HeightRequest="1" BackgroundColor="#F0F1F4" />
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10">
+                        <Label Grid.Column="0" Text="SPSI" FontSize="16" TextColor="{StaticResource AbuTeks}" VerticalOptions="Center" />
+                        <Entry Grid.Column="1" x:Name="EntryPotonganSpsi" Keyboard="Numeric" FontSize="16"
+                   HorizontalTextAlignment="End" TextColor="{StaticResource HitamTeks}"
+                   BackgroundColor="Transparent" WidthRequest="130" />
+                    </Grid>
+
+                    <BoxView HeightRequest="1.5" BackgroundColor="#D1D5DB" Margin="0,8,0,0" />
+
+                    <Grid ColumnDefinitions="*,Auto" Padding="0,10,0,0">
+                        <Label Grid.Column="0" Text="Total Potongan" FontAttributes="Bold" FontSize="17" />
+                        <Label Grid.Column="1" x:Name="LabelTotalPotongan" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource MerahHapus}" />
+                    </Grid>
+
+                    <Button x:Name="ButtonSimpanPotongan" Text="Simpan Potongan" Style="{StaticResource TombolSekunder}" Clicked="OnSimpanPotonganClicked" Margin="0,14,0,0" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Dibayar -->
+            <Border Style="{StaticResource KartuBorder}" BackgroundColor="{StaticResource BiruUtama}">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="Dibayar" TextColor="White" FontAttributes="Bold" FontSize="18" VerticalOptions="Center" />
+                    <Label Grid.Column="1" x:Name="LabelDibayar" TextColor="{StaticResource AksenOranye}" FontAttributes="Bold" FontSize="22" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+
+            <Button x:Name="ButtonBagikanPdf" Text="Bagikan sebagai PDF" Style="{StaticResource TombolUtama}" Clicked="OnBagikanPdfClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

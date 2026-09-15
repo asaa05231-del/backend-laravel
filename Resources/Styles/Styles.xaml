@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource AbuLatar}" />
+    </Style>
+
+    <Style x:Key="JudulHalaman" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource BiruUtama}" />
+    </Style>
+
+    <Style x:Key="SubJudul" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource AbuTeks}" />
+    </Style>
+
+    <Style x:Key="LabelKartu" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource HitamTeks}" />
+    </Style>
+    
+    <Style x:Key="KartuBorder" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PutihKartu}" />
+        <Setter Property="Stroke" Value="Transparent" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Brush="Black" Opacity="0.08" Radius="12" Offset="0,4" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="KartuBorderList" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PutihKartu}" />
+        <Setter Property="Stroke" Value="#D1D5DB" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="Padding" Value="16" />
+    </Style> 
+    
+    <Style x:Key="KartuFrame" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource PutihKartu}" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="Padding" Value="16" />
+        <Setter Property="BorderColor" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="TombolUtama" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource AksenOranye}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HeightRequest" Value="50" />
+    </Style>
+
+    <Style x:Key="TombolSekunder" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BiruMuda}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HeightRequest" Value="46" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource HitamTeks}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource AbuTeks}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{StaticResource HitamTeks}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PutihKartu}" />
+        <Setter Property="TitleColor" Value="{StaticResource AbuTeks}" />
+    </Style>
+    
+    <Style TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{StaticResource HitamTeks}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PutihKartu}" />
+    </Style>
+    
+</ResourceDictionary>

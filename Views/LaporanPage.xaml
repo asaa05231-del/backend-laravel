@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.LaporanPage"
+             Title="Laporan">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18">
+            <Label Text="Laporan" Style="{StaticResource JudulHalaman}" />
+            <Label Text="Ringkasan data untuk kebutuhan admin. Ketuk baris untuk lihat rincian." Style="{StaticResource SubJudul}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Total Pengiriman per Hari" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+                    <CollectionView x:Name="ListPerHari" SelectionMode="Single" SelectionChanged="OnHariDipilih">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,Auto" Padding="4,10">
+                                    <Label Grid.Column="0" Text="{Binding Tanggal}" TextColor="{StaticResource HitamTeks}" />
+                                    <Label Grid.Column="1" Text="{Binding Jumlah, StringFormat='{0} pengiriman'}" FontAttributes="Bold" TextColor="{StaticResource AksenOranye}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Total Biaya per Wilayah" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+                    <CollectionView x:Name="ListPerWilayah" SelectionMode="Single" SelectionChanged="OnWilayahDipilih">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,Auto" Padding="4,10">
+                                    <Label Grid.Column="0" Text="{Binding NamaWilayah}" TextColor="{StaticResource HitamTeks}" />
+                                    <Label Grid.Column="1" Text="{Binding TotalBiaya, StringFormat='Rp {0:N0}'}" FontAttributes="Bold" TextColor="{StaticResource AksenOranye}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Total Pendapatan per Orang" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+                    <Label Text="(sebagai sopir + sebagai kernet)" Style="{StaticResource SubJudul}" />
+                    <CollectionView x:Name="ListPendapatan">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,Auto" Padding="4,10">
+                                    <Label Grid.Column="0" Text="{Binding Nama}" TextColor="{StaticResource HitamTeks}" />
+                                    <Label Grid.Column="1" Text="{Binding TotalPendapatan, StringFormat='Rp {0:N0}'}" FontAttributes="Bold" TextColor="{StaticResource HijauSukses}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

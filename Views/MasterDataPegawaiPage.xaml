@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SistemPengirimanApp.Models"
+             x:Class="SistemPengirimanApp.Views.MasterDataPegawaiPage"
+             Title="Pegawai">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="Tambah Pegawai Baru" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="12">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Tanggal Masuk" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <DatePicker x:Name="PickerTanggalMasukBaru" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nama Pegawai" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryNamaPegawaiBaru" Placeholder="Nama pegawai" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Jabatan" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,10">
+                            <Label x:Name="LabelJabatanBaru" Text="Pilih jabatan" TextColor="Gray">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPilihJabatanBaruTapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Upah Harian" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryUpahHarianBaru" Placeholder="0" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Upah Mingguan" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryUpahMingguanBaru" Placeholder="0" Keyboard="Numeric" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Ikut Jamsostek" FontSize="14" TextColor="{StaticResource HitamTeks}" VerticalOptions="Center" />
+                        <Switch Grid.Column="1" x:Name="SwitchIkutJamsostekBaru" IsToggled="True" />
+                    </Grid>
+
+                    <Button Text="Tambah Pegawai" Style="{StaticResource TombolUtama}" Clicked="OnTambahPegawaiClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Daftar Pegawai" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+
+            <CollectionView x:Name="ListPegawai">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Pegawai">
+                        <Border Style="{StaticResource KartuBorder}" Padding="14,10" Margin="0,0,0,8">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Nama}" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource HitamTeks}" />
+
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Tanggal Masuk" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                                    <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                        <DatePicker Date="{Binding TanggalMasuk, Converter={StaticResource NullableDateConverter}}" />
+                                    </Border>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Jabatan" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                                    <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,10">
+                                        <Label Text="{Binding Jabatan}" TextColor="{StaticResource HitamTeks}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnPilihJabatanPegawaiTapped" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Border>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Upah Harian" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                                    <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                        <Entry Text="{Binding UpahHarian, Converter={StaticResource FormatRibuan}}" Keyboard="Numeric" />
+                                    </Border>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Upah Mingguan" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                                    <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                        <Entry Text="{Binding UpahMingguan, Converter={StaticResource FormatRibuan}}" Keyboard="Numeric" />
+                                    </Border>
+                                </VerticalStackLayout>
+
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Grid.Column="0" Text="Ikut Jamsostek" FontSize="14" TextColor="{StaticResource HitamTeks}" VerticalOptions="Center" />
+                                    <Switch Grid.Column="1" IsToggled="{Binding IkutJamsostek}" />
+                                </Grid>
+
+                                <Button Text="Simpan Perubahan" Style="{StaticResource TombolSekunder}"
+                                        Clicked="OnSimpanPegawaiClicked" CommandParameter="{Binding .}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

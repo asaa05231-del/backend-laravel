@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SistemPengirimanApp.Views.ProfilPage"
+             Title="Profil">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <Label Text="Profil Saya" Style="{StaticResource JudulHalaman}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="12">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nama" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryNama" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Username" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryUsername" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <Label x:Name="LabelPesanProfil" FontSize="13" IsVisible="False" />
+                    <Button Text="Simpan Perubahan Profil" Style="{StaticResource TombolUtama}" Clicked="OnSimpanProfilClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Ganti Password" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" Margin="0,10,0,0" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="14">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Password Lama" FontSize="13" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryPasswordLama" IsPassword="True" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Password Baru" FontSize="13" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryPasswordBaru" IsPassword="True" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Konfirmasi Password Baru" FontSize="13" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryKonfirmasiPassword" IsPassword="True" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Label x:Name="LabelPesan" FontSize="13" IsVisible="False" />
+
+                    <Button Text="Simpan Password Baru" Style="{StaticResource TombolUtama}" Clicked="OnSimpanPasswordClicked" />
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

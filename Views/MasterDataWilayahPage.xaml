@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SistemPengirimanApp.Models"
+             xmlns:services="clr-namespace:SistemPengirimanApp.Services"
+             x:Class="SistemPengirimanApp.Views.MasterDataWilayahPage"
+             Title="Wilayah &amp; Tarif">
+    <ContentPage.Resources>
+        <services:FormatRibuanConverter x:Key="ConverterRibuan" />
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <Label Text="Tambah Wilayah Baru" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" />
+
+            <Border Style="{StaticResource KartuBorder}">
+                <VerticalStackLayout Spacing="12">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nama Wilayah" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                            <Entry x:Name="EntryNamaWilayahBaru" Placeholder="Contoh: Wilayah VII" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Tarif sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryTarifsopirBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Tarif Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                            <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                <Entry x:Name="EntryTarifKernetBaru" Placeholder="0" Keyboard="Numeric" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Button Text="Tambah Wilayah" Style="{StaticResource TombolUtama}" Clicked="OnTambahWilayahClicked" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Daftar Wilayah" FontAttributes="Bold" FontSize="16" TextColor="{StaticResource BiruUtama}" Margin="0,6,0,0" />
+            <CollectionView x:Name="ListWilayah">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Wilayah">
+                        <Border Style="{StaticResource KartuBorder}" Margin="0,0,0,10">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding NamaWilayah}" FontAttributes="Bold" TextColor="{StaticResource BiruUtama}" FontSize="16" />
+
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                        <Label Text="Tarif sopir" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                            <Entry Text="{Binding Tarifsopir, Converter={StaticResource ConverterRibuan}}" Keyboard="Numeric" />
+                                        </Border>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                        <Label Text="Tarif Kernet" FontSize="12" TextColor="{StaticResource AbuTeks}" />
+                                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
+                                            <Entry Text="{Binding TarifKernet, Converter={StaticResource ConverterRibuan}}" Keyboard="Numeric" />
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <Button Text="Simpan Perubahan" Style="{StaticResource TombolSekunder}"
+                                        Clicked="OnSimpanWilayahClicked" CommandParameter="{Binding .}" />
+                                <Button Text="Hapus Wilayah" Style="{StaticResource TombolSekunder}"
+                                        Clicked="OnHapusWilayahClicked" CommandParameter="{Binding .}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

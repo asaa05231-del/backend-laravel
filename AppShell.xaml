@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:SistemPengirimanApp.Views"
+       x:Class="SistemPengirimanApp.AppShell"
+       Title="SIGAP"
+       FlyoutBackgroundColor="{StaticResource BiruUtama}">
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout BackgroundColor="{StaticResource BiruUtama}" Spacing="0">
+            <Grid Padding="20,24" HeightRequest="96" ColumnDefinitions="42,*" ColumnSpacing="12">
+                <Image Grid.Column="0" Source="app_logo.png" WidthRequest="40" HeightRequest="40"
+                   Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                    <Label Text="SIGAP" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="PT Bina Adidaya" FontSize="13" TextColor="#D4DAEB" />
+                </VerticalStackLayout>
+            </Grid>
+            <BoxView HeightRequest="1" BackgroundColor="#33FFFFFF" />
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutContent>
+        <ScrollView BackgroundColor="{StaticResource BiruUtama}">
+            <VerticalStackLayout Padding="10,10" Spacing="3">
+
+                <Border x:Name="ItemBeranda" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuBerandaTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe88a;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Beranda" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ItemInput" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuInputTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe558;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Input Pengiriman" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ItemRiwayat" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuRiwayatTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe889;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Riwayat Pengiriman" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ItemSummary" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuSummaryTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe85d;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Summary" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ItemMasterData" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="#01000000" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnToggleMasterDataTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe26b;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Master Data" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout x:Name="StackSubMasterData" IsVisible="False" Padding="18,0,0,4" Spacing="3">
+                    <Border x:Name="ItemDataPegawai" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuDataPegawaiTapped" />
+                            <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                        </Border.GestureRecognizers>
+                        <Grid Padding="12,9" ColumnDefinitions="26,*" ColumnSpacing="10">
+                            <Label Grid.Column="0" Text="&#xe7fb;" FontFamily="MaterialIcons" FontSize="16" TextColor="#8CA0D6" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="Data Pegawai" FontSize="15" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                    <Border x:Name="ItemWilayahTarif" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuWilayahTarifTapped" />
+                            <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                        </Border.GestureRecognizers>
+                        <Grid Padding="12,9" ColumnDefinitions="26,*" ColumnSpacing="10">
+                            <Label Grid.Column="0" Text="&#xe55b;" FontFamily="MaterialIcons" FontSize="16" TextColor="#8CA0D6" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="Wilayah &amp; Tarif" FontSize="15" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                    <Border x:Name="ItemTarifTahunan" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMenuTarifTahunanTapped" />
+                            <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                        </Border.GestureRecognizers>
+                        <Grid Padding="12,9" ColumnDefinitions="26,*" ColumnSpacing="10">
+                            <Label Grid.Column="0" Text="&#xe935;" FontFamily="MaterialIcons" FontSize="16" TextColor="#8CA0D6" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="Tarif Tahunan" FontSize="15" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <Border x:Name="ItemSlipGaji" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuSlipGajiTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe873;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Slip Gaji" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ItemLaporan" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuLaporanTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe26b;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Laporan" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border x:Name="ItemPengaturan" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuPengaturanTapped" />
+                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
+                        <Label Grid.Column="0" Text="&#xe8b8;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Pengaturan" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Shell.FlyoutContent>
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout BackgroundColor="{StaticResource BiruUtama}" Padding="16,12,16,18" Spacing="0">
+            <BoxView HeightRequest="1" BackgroundColor="#33FFFFFF" Margin="0,0,0,12" />
+            <Grid ColumnDefinitions="42,*" ColumnSpacing="12" Padding="0,0,0,12">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMenuProfilTapped" />
+                </Grid.GestureRecognizers>
+                <Border Grid.Column="0" WidthRequest="38" HeightRequest="38" StrokeShape="RoundRectangle 19"
+                    Stroke="Transparent" BackgroundColor="{StaticResource AksenOranye}"
+                    HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label x:Name="LabelInisialUser" Text="A" TextColor="White" FontAttributes="Bold" FontSize="16"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="1">
+                    <Label x:Name="LabelNamaUserFlyout" Text="Admin" FontAttributes="Bold" FontSize="15" TextColor="White" />
+                    <Label x:Name="LabelPeranUserFlyout" Text="Admin" FontSize="13" TextColor="{StaticResource AksenOranye}" />
+                </VerticalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="26,*" ColumnSpacing="10">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLogoutClicked" />
+                </Grid.GestureRecognizers>
+                <Label Grid.Column="0" Text="&#xe9ba;" FontFamily="MaterialIcons" FontSize="17" TextColor="#8CA0D6" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="Keluar" FontSize="15" TextColor="#8CA0D6" VerticalOptions="Center" />
+            </Grid>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+    <ShellContent x:Name="LoginShellContent"
+                  Title="Login"
+                  Route="LoginPage"
+                  Shell.FlyoutBehavior="Disabled"
+                  Shell.FlyoutItemIsVisible="False"
+                  ContentTemplate="{DataTemplate views:LoginPage}" />
+
+    <FlyoutItem x:Name="MenuBeranda" Title="Beranda" Route="BerandaPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:BerandaPage}" Route="BerandaPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuProfil" Title="Profil" Route="ProfilPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:ProfilPage}" Route="ProfilPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuInput" Title="Input Pengiriman" Route="InputPengirimanPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:InputPengirimanPage}" Route="InputPengirimanPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuRiwayat" Title="Riwayat Pengiriman" Route="RiwayatPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:RiwayatPage}" Route="RiwayatPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuMasterData" Title="Master Data" Route="MasterDataPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:MasterDataPage}" Route="MasterDataPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuSlipGaji" Title="Slip Gaji" Route="SlipGajiPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:SlipGajiPage}" Route="SlipGajiPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuLaporan" Title="Laporan" Route="LaporanPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:LaporanPage}" Route="LaporanPageContent" />
+    </FlyoutItem>
+    <FlyoutItem x:Name="MenuSummary" Title="Summary" Route="SummaryPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:SummaryPage}" Route="SummaryPageContent" />
+    </FlyoutItem>
+
+</Shell>
