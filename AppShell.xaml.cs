@@ -17,10 +17,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("MasterDataWilayahPage", typeof(MasterDataWilayahPage));
         Routing.RegisterRoute("MasterDataTarifTahunanPage", typeof(MasterDataTarifTahunanPage));
         Routing.RegisterRoute("DetailSlipGajiPage", typeof(DetailSlipGajiPage));
-        Routing.RegisterRoute("MasterDataPegawaiPage", typeof(MasterDataPegawaiPage));
-        Routing.RegisterRoute("MasterDataWilayahPage", typeof(MasterDataWilayahPage));
-        Routing.RegisterRoute("MasterDataTarifTahunanPage", typeof(MasterDataTarifTahunanPage));
-        Routing.RegisterRoute("DetailSlipGajiPage", typeof(DetailSlipGajiPage));
         Routing.RegisterRoute("RincianSlipGajiPage", typeof(RincianSlipGajiPage));
     }
 
@@ -39,7 +35,6 @@ public partial class AppShell : Shell
         ItemMasterData.IsVisible = admin;
         ItemLaporan.IsVisible = admin;
         ItemSummary.IsVisible = admin;
-        ItemPengaturan.IsVisible = admin;
 
         if (!admin)
             StackSubMasterData.IsVisible = false;
@@ -102,12 +97,6 @@ public partial class AppShell : Shell
     private async void OnMenuDataPegawaiTapped(object sender, EventArgs e) => await GoTo("MasterDataPegawaiPage", ItemDataPegawai);
     private async void OnMenuWilayahTarifTapped(object sender, EventArgs e) => await GoTo("MasterDataWilayahPage", ItemWilayahTarif);
     private async void OnMenuTarifTahunanTapped(object sender, EventArgs e) => await GoTo("MasterDataTarifTahunanPage", ItemTarifTahunan);
-
-    private async void OnMenuPengaturanTapped(object sender, EventArgs e)
-    {
-        SetItemAktif(ItemPengaturan);
-        await DisplayAlert("Segera Hadir", "Halaman Pengaturan belum tersedia.", "OK");
-    }
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {

@@ -103,10 +103,8 @@ public partial class MasterDataTarifTahunanPage : ContentPage
         decimal.TryParse(EntryUpahMingguanKernetBaru.Text, out var mingguanKernet);
         decimal.TryParse(EntryTunjanganMakanBaru.Text, out var tunjanganMakan);
         decimal.TryParse(EntrySubsidiTransportBaru.Text, out var subsidiTransport);
-        decimal.TryParse(EntryJamsostekBaru.Text, out var jamsostek);
 
-        var berhasil = await _api.TambahTarifTahunanAsync(tahun, hariansopir, harianKernet, mingguansopir, mingguanKernet, tunjanganMakan, subsidiTransport, jamsostek);
-
+        var berhasil = await _api.TambahTarifTahunanAsync(tahun, hariansopir, harianKernet, mingguansopir, mingguanKernet, tunjanganMakan, subsidiTransport);
         if (!berhasil)
         {
             await DisplayAlert("Gagal", "Tarif gagal disimpan.", "OK");
@@ -120,7 +118,6 @@ public partial class MasterDataTarifTahunanPage : ContentPage
         EntryUpahMingguanKernetBaru.Text = string.Empty;
         EntryTunjanganMakanBaru.Text = string.Empty;
         EntrySubsidiTransportBaru.Text = string.Empty;
-        EntryJamsostekBaru.Text = string.Empty;
 
         await MuatData();
     }

@@ -11,7 +11,7 @@ namespace SistemPengirimanApp.Services
     {
         private readonly HttpClient _http;
 
-        private const string BaseUrl = "http://127.0.0.1:8000/api/";
+        private const string BaseUrl = "http://192.168.137.109:8000/api/";
 
         public ApiService()
         {
@@ -264,13 +264,12 @@ namespace SistemPengirimanApp.Services
                 upah_mingguan_kernet = tarif.UpahMingguanKernet,
                 tunjangan_makan_harian = tarif.TunjanganMakanHarian,
                 subsidi_transport_harian = tarif.SubsidiTransportHarian,
-                jamsostek_persen = tarif.JamsostekPersen,
             });
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> TambahTarifTahunanAsync(int tahun, decimal UpahHariansupir, decimal upahHarianKernet, decimal UpahMingguansupir, decimal upahMingguanKernet, decimal tunjanganMakanHarian, decimal subsidiTransportHarian, decimal jamsostekPersen)
+        public async Task<bool> TambahTarifTahunanAsync(int tahun, decimal UpahHariansupir, decimal upahHarianKernet, decimal UpahMingguansupir, decimal upahMingguanKernet, decimal tunjanganMakanHarian, decimal subsidiTransportHarian)
         {
             var response = await _http.PostAsJsonAsync("tarif-upah-tahunan", new
             {
@@ -281,7 +280,6 @@ namespace SistemPengirimanApp.Services
                 upah_mingguan_kernet = upahMingguanKernet,
                 tunjangan_makan_harian = tunjanganMakanHarian,
                 subsidi_transport_harian = subsidiTransportHarian,
-                jamsostek_persen = jamsostekPersen,
             });
             return response.IsSuccessStatusCode;
         }

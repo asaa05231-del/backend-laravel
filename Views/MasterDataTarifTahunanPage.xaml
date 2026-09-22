@@ -52,12 +52,6 @@
                             </Border>
                         </VerticalStackLayout>
                     </Grid>
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="Jamsostek (%)" FontSize="12" TextColor="{StaticResource AbuTeks}" />
-                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
-                            <Entry Text="{Binding JamsostekPersen, Converter={StaticResource FormatRibuan}, Mode=OneWay}" Keyboard="Numeric" />
-                        </Border>
-                    </VerticalStackLayout>
                     <Button Text="Simpan Perubahan" Style="{StaticResource TombolSekunder}"
                     Clicked="OnSimpanTarifTahunanClicked" CommandParameter="{Binding .}" />
                 </VerticalStackLayout>
@@ -120,12 +114,6 @@
                             </Border>
                         </VerticalStackLayout>
                     </Grid>
-                    <VerticalStackLayout Spacing="4">
-                        <Label Text="Jamsostek (%)" FontSize="12" TextColor="{StaticResource AbuTeks}" />
-                        <Border Stroke="#D1D5DB" StrokeShape="RoundRectangle 8" Padding="12,0">
-                            <Entry x:Name="EntryJamsostekBaru" Placeholder="0" Keyboard="Numeric" />
-                        </Border>
-                    </VerticalStackLayout>
                     <Button Text="Tambah/Perbarui Tahun" Style="{StaticResource TombolUtama}" Clicked="OnTambahTarifTahunanClicked" />
                 </VerticalStackLayout>
             </Border>

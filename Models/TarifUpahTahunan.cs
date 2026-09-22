@@ -27,6 +27,4 @@ public class TarifUpahTahunan
     [JsonPropertyName("subsidi_transport_harian")]
     public decimal SubsidiTransportHarian { get; set; }
 
-    [JsonPropertyName("jamsostek_persen")]
-    public decimal JamsostekPersen { get; set; }
 }

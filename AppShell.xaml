@@ -134,17 +134,6 @@
                     </Grid>
                 </Border>
 
-                <Border x:Name="ItemPengaturan" StrokeShape="RoundRectangle 8" Stroke="Transparent" BackgroundColor="Transparent" Padding="0">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMenuPengaturanTapped" />
-                        <PointerGestureRecognizer PointerEntered="OnItemPointerEntered" PointerExited="OnItemPointerExited" />
-                    </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="32,*" Padding="12,11" ColumnSpacing="12">
-                        <Label Grid.Column="0" Text="&#xe8b8;" FontFamily="MaterialIcons" FontSize="21" TextColor="#8CA0D6" VerticalOptions="Center" />
-                        <Label Grid.Column="1" Text="Pengaturan" FontSize="16" TextColor="#C7D3EE" VerticalOptions="Center" />
-                    </Grid>
-                </Border>
-
             </VerticalStackLayout>
         </ScrollView>
     </Shell.FlyoutContent>
