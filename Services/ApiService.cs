@@ -11,8 +11,7 @@ namespace SistemPengirimanApp.Services
     {
         private readonly HttpClient _http;
 
-        private const string BaseUrl = "http://192.168.137.109:8000/api/";
-
+        private const string BaseUrl = "http://127.0.0.1:8000/api/";
         public ApiService()
         {
             _http = new HttpClient();
